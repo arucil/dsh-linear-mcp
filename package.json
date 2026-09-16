@@ -30,7 +30,8 @@
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "npm run build && vitest run",
-    "dev": "tsx src/index.ts"
+    "dev": "tsx src/index.ts",
+    "prepare": "npm run build"
   },
   "dependencies": {
     "@linear/sdk": "^95.0.0",
