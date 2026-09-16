@@ -1,0 +1,18 @@
+# Example: mount dsh-linear-mcp in a DeepSeek Harness profile.
+#
+# 1. dsh plugin --profile acp add github:arucil/dsh-linear-mcp
+# 2. paste this into ~/.dsh/profiles/acp/cordis.patch.yml
+# 3. export LINEAR_API_KEY in the environment that starts dsh, then start a new session.
+#
+# The model sees the tools as mcp__linear__<tool>.
+
+- insert:
+    - id: mcp-linear
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: linear
+        transport: stdio
+        command: /home/USER/.dsh/profiles/acp/node_modules/.bin/dsh-linear-mcp
+        env:
+          LINEAR_API_KEY: !!js process.env.LINEAR_API_KEY
+        toolCallTimeoutMs: 60000

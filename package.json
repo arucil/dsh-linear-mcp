@@ -1,0 +1,66 @@
+{
+  "name": "@arucil/dsh-linear-mcp",
+  "version": "0.1.0",
+  "description": "Linear MCP server (stdio) with personal-API-key auth: issues, sub-issues, relations, comments, projects, cycles, teams, users and workflow states. Pluggable into DeepSeek Harness, Codex, Claude and any MCP client.",
+  "type": "module",
+  "bin": {
+    "dsh-linear-mcp": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./server": {
+      "types": "./dist/server.d.ts",
+      "default": "./dist/server.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && vitest run",
+    "dev": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "@linear/sdk": "^95.0.0",
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^3.2.4"
+  },
+  "license": "MIT",
+  "author": "arucil",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arucil/dsh-linear-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/arucil/dsh-linear-mcp/issues"
+  },
+  "homepage": "https://github.com/arucil/dsh-linear-mcp#readme",
+  "keywords": [
+    "mcp",
+    "modelcontextprotocol",
+    "linear",
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "agent",
+    "issue-tracker"
+  ]
+}

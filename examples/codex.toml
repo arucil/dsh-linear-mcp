@@ -1,0 +1,9 @@
+# Example: Codex MCP server entry for dsh-linear-mcp.
+# Add to ~/.codex/config.toml after installing the package.
+
+[mcp_servers.linear-local]
+command = "dsh-linear-mcp"
+args = []
+env = { LINEAR_API_KEY = "lin_api_xxxxxxxx" }
+startup_timeout_sec = 20.0
+tool_timeout_sec = 60.0
