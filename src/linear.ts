@@ -129,9 +129,10 @@ function toRelationType(type: string): IssueRelationType {
 }
 
 async function serializeIssue(issue: Issue): Promise<Record<string, unknown>> {
-  const [state, assignee, project, cycle, parent, children, labels, relations] = await Promise.all([
+  const [state, assignee, creator, project, cycle, parent, children, labels, relations] = await Promise.all([
     issue.state,
     issue.assignee,
+    issue.creator,
     issue.project,
     issue.cycle,
     issue.parent,
@@ -154,6 +155,10 @@ async function serializeIssue(issue: Issue): Promise<Record<string, unknown>> {
     state: state ? { id: state.id, name: state.name, type: state.type } : null,
     assignee: assignee
       ? { id: assignee.id, name: assignee.name, displayName: assignee.displayName, email: assignee.email }
+      : null,
+    creatorId: issue.creatorId ?? null,
+    creator: creator
+      ? { id: creator.id, name: creator.name, displayName: creator.displayName, email: creator.email }
       : null,
     project: project ? { id: project.id, name: project.name, state: project.state } : null,
     cycle: cycle ? { id: cycle.id, name: cycle.name, number: cycle.number } : null,

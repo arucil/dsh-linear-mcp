@@ -18,13 +18,19 @@ It authenticates with a **Linear personal API key** (`lin_api_…`) instead of O
 | `linear_search_issues` | Free-text search; an exact identifier like `ENG-4651` is fetched directly |
 | `linear_list_issues` | Filter by team, project, cycle, **assignee (`"me"` supported)**, exact state name, state type, label, archived |
 | `linear_list_my_issues` | Issues assigned to the API key's own user |
-| `linear_get_issue` | Full detail: state, assignee, parent, children, labels, relations |
+| `linear_get_issue` | Full detail: state, assignee, creator / reporter, parent, children, labels, relations |
 | `linear_create_issue` | Create, including **`parentId` for a sub-issue** |
 | `linear_update_issue` | Update any mutable field, including `parentId` (reparent) and archive |
 | `linear_archive_issue` / `linear_delete_issue` | Archive (reversible) / delete |
 | `linear_create_issue_relation` / `linear_list_issue_relations` / `linear_delete_issue_relation` | `blocks` / `duplicate` / `related` / `similar` relations |
 | `linear_add_comment` / `linear_list_comments` | Read and write comments (threaded replies supported) |
 | `linear_update_comment` / `linear_delete_comment` | Edit / delete comments |
+
+Issue results include `creatorId` and `creator: { id, name, displayName, email }`.
+The creator is the original issue reporter, independently of its current assignee.
+These fields are included in issue detail, lists, searches and issue mutation responses;
+both are `null` when Linear has no creator. A creator lookup error is reported as an error,
+so callers must not infer the reporter from an assignee or comment author.
 
 ## Auth
 

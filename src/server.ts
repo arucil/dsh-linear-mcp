@@ -239,7 +239,7 @@ export function buildServer(linear: LinearService): McpServer {
     {
       title: "Get a Linear issue",
       description:
-        "Return one issue by UUID or identifier (e.g. ENG-4651), including state, assignee, parent, children, labels and relations.",
+        "Return one issue by UUID or identifier (e.g. ENG-4651), including state, assignee, creator (original reporter), creatorId, parent, children, labels and relations. Creator includes id, name, displayName and email; it is null when Linear has no creator.",
       annotations: { readOnlyHint: true },
       inputSchema: { id: z.string().describe("Issue UUID or identifier") },
     },
